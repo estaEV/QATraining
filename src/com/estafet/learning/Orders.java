@@ -5,11 +5,18 @@ import java.util.List;
 
 abstract public class Orders {
 
-    protected int orderNumber;
-    protected String clientDetails;
-    protected List<String> articles;
-    protected double totalAmount;
-    protected static final int MAX_NUMBER_OF_ORDERS_PER_CLIENT;
+    private int orderNumber;
+    private String clientDetails;
+    private List<String> articles;
+    private double totalAmount;
+    private double totalAmountBeforeVAT;
+    private double totalAmountBeforeVATWithDiscount;
+    private double discountedAmount;
+    private double totalAmountAfterVAT;
+
+
+
+    private static final int MAX_NUMBER_OF_ORDERS_PER_CLIENT;
 
     static {
         MAX_NUMBER_OF_ORDERS_PER_CLIENT = 10000;
