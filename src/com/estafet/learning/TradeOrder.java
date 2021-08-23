@@ -3,7 +3,7 @@ package com.estafet.learning;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TradeOrder extends Orders {
+public class TradeOrder extends Order {
 /*    protected static final List <String> TRADEORDER_LIST_WITH_ARTICLES;
 
     static {

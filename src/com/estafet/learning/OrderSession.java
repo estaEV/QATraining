@@ -27,7 +27,7 @@ public class OrderSession {
         System.out.println("I am an OrderSession (int year, double amount, boolean isEOrder, int maxNumOfPages, double numberOfPages, double numberOfPagesLeft, String employSignature) constructor.");
     }
 
-    static void someTest(Orders obj) {
+    static void someTest(Order obj) {
 
     }
 

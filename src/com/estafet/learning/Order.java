@@ -3,7 +3,7 @@ package com.estafet.learning;
 import java.lang.reflect.Field;
 import java.util.List;
 
-abstract public class Orders {
+abstract public class Order {
 
     private int orderNumber;
     private String clientDetails;
@@ -23,34 +23,34 @@ abstract public class Orders {
     }
 
 
-    Orders() {
-        System.out.println("I am an Orders() constructor.");
+    Order() {
+        System.out.println("I am an Order() constructor.");
     }
 
 
-    Orders(int orderNumber, double totalAmount) {
-        System.out.println("I am an Orders(int orderNumber, double totalAmount) constructor.");
+    Order(int orderNumber, double totalAmount) {
+        System.out.println("I am an Order(int orderNumber, double totalAmount) constructor.");
     }
 
 
-    Orders(String clientDetails, List<String> articles) {
+    Order(String clientDetails, List<String> articles) {
         this.clientDetails = clientDetails;
         this.articles = articles;
-        System.out.println("I am an Orders(String[] clientDetails, List<String> articles) constructor.");
+        System.out.println("I am an Order(String[] clientDetails, List<String> articles) constructor.");
     }
 
 
-    // calling the following constructor: Orders(String[] clientDetails, List<String> articles)
-    Orders(int orderNumber, String clientDetails, List<String> articles, double totalAmount) {
+    // calling the following constructor: Order(String[] clientDetails, List<String> articles)
+    Order(int orderNumber, String clientDetails, List<String> articles, double totalAmount) {
         this.orderNumber = orderNumber;
         this.clientDetails = clientDetails;
         this.articles = articles;
         this.totalAmount = totalAmount;
-        System.out.println("I am an Orders(int orderNumber, String[] clientDetails, List<String> articles, double totalAmount) constructor.");
+        System.out.println("I am an Order(int orderNumber, String[] clientDetails, List<String> articles, double totalAmount) constructor.");
     }
 
-    public static void printObjectPropertiesStatic(List<Orders> ordersObjects) {
-        for (Orders item : ordersObjects) {
+    public static void printObjectPropertiesStatic(List<Order> ordersObjects) {
+        for (Order item : ordersObjects) {
             System.out.println("Item: " + item.toString());
         }
     }
@@ -78,7 +78,7 @@ abstract public class Orders {
         }
 
         // type casting of the argument.
-        Orders ordersObj = (Orders) obj;
+        Order ordersObj = (Order) obj;
 
         // comparing the state of argument with
         // the state of 'this' Object.

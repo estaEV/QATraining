@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static com.estafet.learning.Orders.*;
+import static com.estafet.learning.Order.*;
 import static com.estafet.learning.TradeInvoice.*;
 
 public class Main {
