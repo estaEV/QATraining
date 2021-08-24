@@ -1,6 +1,8 @@
 package com.estafet.learning;
 
+import java.lang.reflect.Field;
 import java.util.*;
+import java.io.*;
 
 public class TradeInvoice extends Invoice {
     public Random rand = new Random();
@@ -112,6 +114,27 @@ public class TradeInvoice extends Invoice {
         System.out.println("Item: " + this.toString());
     }
 
+    public void saveInvoiceToFile() throws IOException {
+        BufferedWriter bw = null;
+        try {
+            bw = new BufferedWriter(
+                    new FileWriter("C:\\TrainingPlanProjects\\Sprint_04\\InvoicePropertiesOutput.txt"));
+                    bw.write("\n" + String.valueOf(this.articlesToPass) + ", ");
+                    bw.write("\n" + this.getInvoiceNumber() + ", ");
+                    bw.write("\n" + this.getClientDetails() + ", ");
+                    bw.write("\n" + this.getTotalAmountBeforeVAT() + ", ");
+                    bw.write("\n" + this.getTotalAmountBeforeVATWithDiscount() + ", ");
+                    bw.write("\n" + this.getDiscountedAmount() + ", ");
+                    bw.write("\n" + this.getDiscountedAmount() + ", ");
+                    bw.write("\n" + this.getTotalAmountAfterVAT() + ", ");
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            bw.close();
+        }
+    }
+
     // Entry point
     public void ExecuteActions ()
         {
@@ -123,6 +146,11 @@ public class TradeInvoice extends Invoice {
             }
             calculateInvoiceWithVAT();
             printObjectProperties();
+            try {
+                saveInvoiceToFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
 }

@@ -11,7 +11,7 @@ public class TradeOrder extends Order {
     }*/
 
     TradeOrder() {
-        super(10000, "Details about the client field", null, 2.00);
+        //super(10000, "Details about the client field", null, 2.00);
         System.out.println("I am a TradeOrder() constructor.");
     }
 }
