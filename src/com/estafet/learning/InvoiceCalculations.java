@@ -8,7 +8,7 @@ interface InvoiceCalculations {
     // calculate all the invoice article prices
     void generateRandomTradeInvoiceData();
     void calculateInvoiceWithVAT();
-    void cutThemSomeSlack(double additionalDiscountPercent) throws DiscountNotApplicableException;
+    void cutThemSomeSlack(double additionalDiscountPercent) throws DiscountNotApplicableException, ShippingNotSupported;
 
     default double additionalDiscount() {
         double randAdditionalDiscountPercent = (rand.nextInt(4- 1) + 1)*10;

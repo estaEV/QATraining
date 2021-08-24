@@ -73,14 +73,18 @@ public class TradeInvoice extends Invoice {
 
 
     // VAT is calculated on the discounted price of the product. Is it better the retrieve the prices (with get function) inside of the method or to pass them as arguments?
-    public void cutThemSomeSlack(double additionalDiscountPercent) throws DiscountNotApplicableException {
+    public void cutThemSomeSlack(double additionalDiscountPercent) throws DiscountNotApplicableException, ShippingNotSupported {
         //System.out.printf("Additional discount percent is: %s percents\n\n", additionalDiscountPercent);
 
         double passDiscountedAmount = 0;
         double passTotalAmountBeforeVATWithDiscount = getTotalAmountBeforeVAT();
 
-        if (passTotalAmountBeforeVATWithDiscount < 1000 ) {
+        if (passTotalAmountBeforeVATWithDiscount < 500 ) {
             throw new DiscountNotApplicableException("Total amount not reached for the particular discount. Minimum amount is 1000. Current amount: " + passTotalAmountBeforeVATWithDiscount);
+        }
+
+        if (passTotalAmountBeforeVATWithDiscount < 1500 ) {
+            throw new ShippingNotSupported("Shipping is not supported for the following amount: " + passTotalAmountBeforeVATWithDiscount);
         }
 
         double randAdditionalDiscountPercent = additionalDiscountPercent;
@@ -115,10 +119,9 @@ public class TradeInvoice extends Invoice {
     }
 
     public void saveInvoiceToFile() throws IOException {
-        BufferedWriter bw = null;
-        try {
-            bw = new BufferedWriter(
-                    new FileWriter("C:\\TrainingPlanProjects\\Sprint_04\\InvoicePropertiesOutput.txt"));
+        // BufferedWriter bw = null;
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\TrainingPlanProjects\\Sprint_04\\InvoicePropertiesOutput.txt"))) {
+
                     bw.write("\n" + String.valueOf(this.articlesToPass) + ", ");
                     bw.write("\n" + this.getInvoiceNumber() + ", ");
                     bw.write("\n" + this.getClientDetails() + ", ");
@@ -128,11 +131,17 @@ public class TradeInvoice extends Invoice {
                     bw.write("\n" + this.getDiscountedAmount() + ", ");
                     bw.write("\n" + this.getTotalAmountAfterVAT() + ", ");
         } catch(Exception e) {
+            System.out.println("Directory or file not found.");
             e.printStackTrace();
         }
-        finally {
-            bw.close();
-        }
+/*        finally {
+            try {
+                if (bw != null)
+                    bw.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }*/
     }
 
     // Entry point
@@ -141,7 +150,7 @@ public class TradeInvoice extends Invoice {
             generateRandomTradeInvoiceData();
             try {
                 cutThemSomeSlack(additionalDiscount());
-            } catch (DiscountNotApplicableException e) {
+            } catch (DiscountNotApplicableException | ShippingNotSupported e) {
                 e.printStackTrace();
             }
             calculateInvoiceWithVAT();
