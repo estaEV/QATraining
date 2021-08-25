@@ -11,7 +11,9 @@ import static com.estafet.learning.TradeInvoice.*;
 public class Main {
 
     public static void main(String[] args) throws DiscountNotApplicableException {
-        Invoice objectTradeInvoice = new TradeInvoice();
+
+        /*--------------------- TradeInvoice objects ---------------------*/
+/*        Invoice objectTradeInvoice = new TradeInvoice();
         Invoice objectTradeInvoice2 = new TradeInvoice();
         TradeInvoiceCalculations objectTradeInvoiceCalculations = new TradeInvoice();
 
@@ -23,7 +25,20 @@ public class Main {
         objectTradeInvoice.ExecuteActions();
         objectTradeInvoice2.ExecuteActions();
 
-        objectTradeInvoiceCalculations.ExecuteActions();
+        objectTradeInvoiceCalculations.ExecuteActions();*/
+
+        /*--------------------- Order objects ---------------------*/
+        List<Order> orderObjectsList = new ArrayList<>();
+        Order objectOrder = new Order();
+        Order objectOrder2 = new Order();
+
+        orderObjectsList.add(objectOrder);
+        orderObjectsList.add(objectOrder2);
+
+        for (int i = 0; i < orderObjectsList.size(); i++) {
+            orderObjectsList.get(i).ExecuteActionsOnOrder();
+        }
+
 
         System.out.println();
 

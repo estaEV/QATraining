@@ -118,7 +118,7 @@ public class TradeInvoice extends Invoice {
         System.out.println("Item: " + this.toString());
     }
 
-    public void saveInvoiceToFile() throws IOException {
+    public void saveInvoiceObjectToFile() throws IOException {
         // BufferedWriter bw = null;
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\TrainingPlanProjects\\Sprint_04\\InvoicePropertiesOutput.txt"))) {
 
@@ -134,14 +134,14 @@ public class TradeInvoice extends Invoice {
             System.out.println("Directory or file not found.");
             e.printStackTrace();
         }
-/*        finally {
-            try {
+        finally {
+            System.out.println("Finally still exist in try with resources block.");
+/*            try {
                 if (bw != null)
                     bw.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                e.printStackTrace();*/
             }
-        }*/
     }
 
     // Entry point
@@ -156,7 +156,7 @@ public class TradeInvoice extends Invoice {
             calculateInvoiceWithVAT();
             printObjectProperties();
             try {
-                saveInvoiceToFile();
+                saveInvoiceObjectToFile();
             } catch (IOException e) {
                 e.printStackTrace();
             }
