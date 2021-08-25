@@ -1,27 +1,19 @@
 package com.estafet.learning;
 
-import java.lang.reflect.Field;
 import java.util.*;
 import java.io.*;
+import static com.estafet.learning.Globals.*;
 
 public class TradeInvoice extends Invoice {
     public Random rand = new Random();
     public Map<String, Double> articlesToPass = new LinkedHashMap<String, Double>();
-
-
-    //public static Map<String, Double> articlesDefaultMap = new LinkedHashMap<String, Double>();
-    public static Map<String, Double> articlesDefaultMapMutable = Map.of("NZXT H510", 74.99, "AMD Ryzen 5 5700G", 369.99, "Asus ROG Strix B550-E Gaming",
-                209.07, "Nvidia GeForce RTX 3060 Ti", 2899.99, "Corsair Vengeance LPX 16GB (2x8GB) DDR4-3200", 77.99,
-                "Addlink S70 512GB NVMe SSD", 84.99, "WD Black 1TB", 69.99, "Corsair TX650M 650W", 129.99);
-    public static Map<String, Double> articlesDefaultMap = new LinkedHashMap<>(articlesDefaultMapMutable);
-
     static
     {
-/*
-    articlesDefaultMap = Map.of("NZXT H510", 74.99, "AMD Ryzen 5 5700G", 369.99, "Asus ROG Strix B550-E Gaming",
-            209.07, "Nvidia GeForce RTX 3060 Ti", 2899.99, "Corsair Vengeance LPX 16GB (2x8GB) DDR4-3200", 77.99,
-            "Addlink S70 512GB NVMe SSD", 84.99, "WD Black 1TB", 69.99, "Corsair TX650M 650W", 129.99);
-*/
+    /*
+        articlesDefaultMap = Map.of("NZXT H510", 74.99, "AMD Ryzen 5 5700G", 369.99, "Asus ROG Strix B550-E Gaming",
+                209.07, "Nvidia GeForce RTX 3060 Ti", 2899.99, "Corsair Vengeance LPX 16GB (2x8GB) DDR4-3200", 77.99,
+                "Addlink S70 512GB NVMe SSD", 84.99, "WD Black 1TB", 69.99, "Corsair TX650M 650W", 129.99);
+    */
     }
 
     // cannot reference here because first the superconstructor will be called. Cannot pass null for articles. Pass the list from the main program!
@@ -50,8 +42,8 @@ public class TradeInvoice extends Invoice {
             if (!(listOfItems.contains(randItemFromTheList)))
             {
                 listOfItems.add(randItemFromTheList);
-                Object currentItem = articlesDefaultMap.keySet().toArray()[randItemFromTheList];
-                double currentItemPrice = articlesDefaultMap.get((articlesDefaultMap.keySet().toArray())[randItemFromTheList]);
+                Object currentItem = ARTICLES_DEFAULT_MAP.keySet().toArray()[randItemFromTheList];
+                double currentItemPrice = ARTICLES_DEFAULT_MAP.get((ARTICLES_DEFAULT_MAP.keySet().toArray())[randItemFromTheList]);
                 articlesToPass.put((String) currentItem, currentItemPrice);
                 //System.out.println(currentItem + " " + currentItemPrice);
                 passTotalAmountBeforeVAT += currentItemPrice;
@@ -106,13 +98,11 @@ public class TradeInvoice extends Invoice {
         setTotalAmountAfterVAT(passTotalAmountAfterVAT);
     }
 
-/*
-    public static void  printObjectPropertiesList(List<Invoice> ordersObjects) {
-        for (Orders item : ordersObjects) {
+/*    public static void  printObjectPropertiesList(List<Invoice> ordersObjects) {
+        for (Invoice item : ordersObjects) {
             System.out.println("Item: " + item.toString());
         }
-    }
-*/
+    }*/
 
     public void printObjectProperties() {
         System.out.println("Item: " + this.toString());
