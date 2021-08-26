@@ -28,7 +28,6 @@ public class CountryPhoneCodes {
     }
 
     public void ReadFile() {
-
         String currentLine = null;
         String regexResult = null;
         String regexResultDigit = null;

@@ -10,7 +10,7 @@ public class Main {
     public static void main(String[] args) throws DiscountNotApplicableException {
         Scanner sc = new Scanner(System.in);  // Create a Scanner object
 
-        /*--------------------- TradeInvoice objects ---------------------*//*
+/*        --------------------- TradeInvoice objects ---------------------*/
 
         Invoice objectTradeInvoice = new TradeInvoice();
         Invoice objectTradeInvoice2 = new TradeInvoice();
@@ -26,8 +26,7 @@ public class Main {
 
         objectTradeInvoiceCalculations.ExecuteActions();
 
-        */
-        /*--------------------- Order objects ---------------------*//*
+        /*--------------------- Order objects ---------------------*/
 
         List<Order> orderObjectsList = new ArrayList<>();
         Order objectOrder = new Order();
@@ -40,8 +39,11 @@ public class Main {
             orderObjectsList.get(i).ExecuteActionsOnOrder();
         }
 
-*/
-/*        ----------------------- FIND INVOICE AND ORDER BY ID -----------------------*//*
+        CountryPhoneCodes objectCountryPhoneCodes = new CountryPhoneCodes();
+        objectCountryPhoneCodes.ReadFile();
+
+
+/*        ----------------------- FIND INVOICE AND ORDER BY ID -----------------------         */
 
 
         System.out.println("Enter Invoice and Order number: ");
@@ -53,11 +55,9 @@ public class Main {
 
         Order foundOrderObj = findOrderByID(orderObjectsList, searchedOrderNumber);
         foundOrderObj.printObjectProperties();
-*/
 
 
-        CountryPhoneCodes objectCountryPhoneCodes = new CountryPhoneCodes();
-        objectCountryPhoneCodes.ReadFile();
+/*        ----------------------- COUNTRY PHONE CODES MAP -----------------------         */
 
     }
 

@@ -7,21 +7,6 @@ import static com.estafet.learning.Globals.*;
 public class TradeInvoice extends Invoice {
     public Random rand = new Random();
     public Map<String, Double> articlesToPass = new LinkedHashMap<String, Double>();
-    static
-    {
-    /*
-        articlesDefaultMap = Map.of("NZXT H510", 74.99, "AMD Ryzen 5 5700G", 369.99, "Asus ROG Strix B550-E Gaming",
-                209.07, "Nvidia GeForce RTX 3060 Ti", 2899.99, "Corsair Vengeance LPX 16GB (2x8GB) DDR4-3200", 77.99,
-                "Addlink S70 512GB NVMe SSD", 84.99, "WD Black 1TB", 69.99, "Corsair TX650M 650W", 129.99);
-    */
-    }
-
-    // cannot reference here because first the superconstructor will be called. Cannot pass null for articles. Pass the list from the main program!
-    TradeInvoice() {
-        //super(19555, "Invoice details goes here.", null, 3.14);
-        //System.out.println("I am a TradeInvoice() constructor.");
-    }
-
 
     public void generateRandomTradeInvoiceData()
     {
