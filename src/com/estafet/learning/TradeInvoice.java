@@ -144,6 +144,7 @@ public class TradeInvoice extends Invoice {
                 e.printStackTrace();
             }
             calculateInvoiceWithVAT();
+            //tradeInvoiceObjectsList.add(this);
             printObjectProperties();
             try {
                 saveInvoiceObjectToFile();

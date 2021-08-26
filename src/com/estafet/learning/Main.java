@@ -7,12 +7,11 @@ import java.util.Scanner;
 
 public class Main {
 
-
-
     public static void main(String[] args) throws DiscountNotApplicableException {
         Scanner sc = new Scanner(System.in);  // Create a Scanner object
 
-        /*--------------------- TradeInvoice objects ---------------------*/
+        /*--------------------- TradeInvoice objects ---------------------*//*
+
         Invoice objectTradeInvoice = new TradeInvoice();
         Invoice objectTradeInvoice2 = new TradeInvoice();
         TradeInvoiceCalculations objectTradeInvoiceCalculations = new TradeInvoice();
@@ -27,7 +26,9 @@ public class Main {
 
         objectTradeInvoiceCalculations.ExecuteActions();
 
-        /*--------------------- Order objects ---------------------*/
+        */
+        /*--------------------- Order objects ---------------------*//*
+
         List<Order> orderObjectsList = new ArrayList<>();
         Order objectOrder = new Order();
         Order objectOrder2 = new Order();
@@ -39,22 +40,9 @@ public class Main {
             orderObjectsList.get(i).ExecuteActionsOnOrder();
         }
 
-
-
-/*
-        CountryPhoneCodes objectCountryPhoneCodes = new CountryPhoneCodes();
-        objectCountryPhoneCodes.ReadFile();
 */
+/*        ----------------------- FIND INVOICE AND ORDER BY ID -----------------------*//*
 
-
-//        System.out.println("Are these objects (objectTradeOrder == objectTradeOrder2) equal: " + objectTradeOrder.equals(objectTradeOrder2));
-//        System.out.printf("obj 1 and obj 2 hashes: \n%s\n%s\n", objectTradeOrder.hashCode(), objectTradeOrder2.hashCode());
-
-//        System.out.println("Are these objects (objectTradeInvoice == objectTradeInvoice2) equal: " + objectTradeInvoice.equals(objectTradeInvoice2));
-//        System.out.printf("obj 1 and obj 2 hashes: \n%s\n%s\n", objectTradeInvoice.hashCode(), objectTradeInvoice2.hashCode());
-
-
-/*        ----------------------- FIND INVOICE AND ORDER BY ID -----------------------*/
 
         System.out.println("Enter Invoice and Order number: ");
         String searchedInvoiceNumber = sc.nextLine();
@@ -65,6 +53,12 @@ public class Main {
 
         Order foundOrderObj = findOrderByID(orderObjectsList, searchedOrderNumber);
         foundOrderObj.printObjectProperties();
+*/
+
+
+        CountryPhoneCodes objectCountryPhoneCodes = new CountryPhoneCodes();
+        objectCountryPhoneCodes.ReadFile();
+
     }
 
     public static Invoice findInvoiceByID(List<Invoice> tradeInvoiceObjectsList, String searchedInvoiceNumber) {
@@ -88,6 +82,4 @@ public class Main {
         System.out.println("ORDER DOES NOT EXISTS!");
         return null;
     }
-
-
 }

@@ -6,10 +6,11 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.*;
 
-import static com.estafet.learning.Globals.ARTICLES_DEFAULT_MAP;
+import static com.estafet.learning.Globals.*;
 
 public class Order implements OrderCalculations{
 
+    public Map<String, Double> itemsToPass = new LinkedHashMap<String, Double>();
     private int orderNumber;
     private String clientDetails;
     private Map<String, Double> items;
@@ -20,7 +21,7 @@ public class Order implements OrderCalculations{
     private double orderTotalAmountBeforeVATWithDiscount;
     private double orderTotalAmountAfterVAT;
     private double orderInvoiceNumber;
-    public Map<String, Double> itemsToPass = new LinkedHashMap<String, Double>();
+    private List<Order> orderObjectsListLocal = new ArrayList<>();
 
 
 
@@ -117,7 +118,7 @@ public class Order implements OrderCalculations{
 
 
     public void addCurrentElementToTheList() {
-
+        orderObjectsListLocal.add(this);
     }
 
     public void generateRandomOrderData()
@@ -257,9 +258,6 @@ public class Order implements OrderCalculations{
             System.out.println("Object and passed arg references are referring to the same object");
             return true;
         }
-        // it checks if the argument is of the
-        // type Geek by comparing the classes
-        // of the passed argument and this object.
         // if(!(obj instanceof Geek)) return false; ---> avoid.
         if (obj == null || obj.getClass() != this.getClass()) {
             return false;

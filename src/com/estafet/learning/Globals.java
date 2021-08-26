@@ -1,6 +1,8 @@
 package com.estafet.learning;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Globals {
@@ -10,4 +12,5 @@ public class Globals {
             209.07, "Nvidia GeForce RTX 3060 Ti", 2899.99, "Corsair Vengeance LPX 16GB (2x8GB) DDR4-3200", 77.99,
             "Addlink S70 512GB NVMe SSD", 84.99, "WD Black 1TB", 69.99, "Corsair TX650M 650W", 129.99);
     public static final Map<String, Double> ARTICLES_DEFAULT_MAP = new LinkedHashMap<>(ARTICLES_DEFAULT_MAP_MUTABLE);
+
 }
