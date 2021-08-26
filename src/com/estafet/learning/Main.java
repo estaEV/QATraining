@@ -11,6 +11,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);  // Create a Scanner object
 
 /*        --------------------- TradeInvoice objects ---------------------*/
+/*
 
         Invoice objectTradeInvoice = new TradeInvoice();
         Invoice objectTradeInvoice2 = new TradeInvoice();
@@ -26,7 +27,9 @@ public class Main {
 
         objectTradeInvoiceCalculations.ExecuteActions();
 
-        /*--------------------- Order objects ---------------------*/
+        */
+/*--------------------- Order objects ---------------------*//*
+
 
         List<Order> orderObjectsList = new ArrayList<>();
         Order objectOrder = new Order();
@@ -38,14 +41,22 @@ public class Main {
         for (int i = 0; i < orderObjectsList.size(); i++) {
             orderObjectsList.get(i).ExecuteActionsOnOrder();
         }
+*/
+
+
+        /*        ----------------------- COUNTRY PHONE CODES MAP -----------------------         */
 
         CountryPhoneCodes objectCountryPhoneCodes = new CountryPhoneCodes();
         objectCountryPhoneCodes.ReadFile();
+
+        CountryPostalCodes objectCountryPostalCodes = new CountryPostalCodes();
+        //objectCountryPostalCodes.ReadFile();
 
 
 /*        ----------------------- FIND INVOICE AND ORDER BY ID -----------------------         */
 
 
+/*
         System.out.println("Enter Invoice and Order number: ");
         String searchedInvoiceNumber = sc.nextLine();
         String searchedOrderNumber = sc.nextLine();
@@ -56,8 +67,9 @@ public class Main {
         Order foundOrderObj = findOrderByID(orderObjectsList, searchedOrderNumber);
         foundOrderObj.printObjectProperties();
 
+*/
 
-/*        ----------------------- COUNTRY PHONE CODES MAP -----------------------         */
+
 
     }
 

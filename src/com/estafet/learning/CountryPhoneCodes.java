@@ -4,14 +4,14 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.File;
-import java.io.FileNotFoundException;  // Import this class to handle errors
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CountryPhoneCodes {
-    public Map<String, String> phoneCodesMap = new HashMap<>();
+    private Map<String, String> phoneCodesMap = new HashMap<>();
 
     public String regexChecker(String theRegex, String str2Check) {
         Pattern checkRegex = Pattern.compile(theRegex);
@@ -30,21 +30,25 @@ public class CountryPhoneCodes {
     public void ReadFile() {
         String currentLine = null;
         String regexResult = null;
+        String regexResult2 = null;
         String regexResultDigit = null;
         List<String> countries = new ArrayList();;
         List<String> phoneCodes =  new ArrayList();;
 
         try {
-            File myObj = new File("C:\\TrainingPlanProjects\\Sprint_04\\country-codes-noprefix.json");
+            File myObj = new File("C:\\TrainingPlanProjects\\Sprint_04\\country-codes.json");
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
                 currentLine = myReader.nextLine();
-                regexResult = regexChecker("([a-zA-Z]+\\s?)+", currentLine);
-                regexResultDigit = regexChecker("\\+?([0-9]\\s?)+", currentLine);
-                if(regexResult != null) {
+
+                if (currentLine.contains("name")) {
+                    regexResult2 = currentLine.substring(14);
+                    regexResult = regexChecker("([a-zA-Z]+\\s?)+", regexResult2);
                     countries.add(regexResult);
                 }
-                else if(regexResultDigit != null) {
+
+                else if (currentLine.contains("code")) {
+                    regexResultDigit = regexChecker("\\+?([0-9]\\s?)+", currentLine);
                     phoneCodes.add(regexResultDigit);
                 }
             }
