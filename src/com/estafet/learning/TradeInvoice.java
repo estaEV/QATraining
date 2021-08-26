@@ -56,13 +56,13 @@ public class TradeInvoice extends Invoice {
         double passDiscountedAmount = 0;
         double passTotalAmountBeforeVATWithDiscount = getTotalAmountBeforeVAT();
 
-        if (passTotalAmountBeforeVATWithDiscount < 500 ) {
-            throw new DiscountNotApplicableException("Total amount not reached for the particular discount. Minimum amount is 1000. Current amount: " + passTotalAmountBeforeVATWithDiscount);
-        }
-
-        if (passTotalAmountBeforeVATWithDiscount < 1500 ) {
-            throw new ShippingNotSupported("Shipping is not supported for the following amount: " + passTotalAmountBeforeVATWithDiscount);
-        }
+//        if (passTotalAmountBeforeVATWithDiscount < 500 ) {
+//            throw new DiscountNotApplicableException("Total amount not reached for the particular discount. Minimum amount is 1000. Current amount: " + passTotalAmountBeforeVATWithDiscount);
+//        }
+//
+//        if (passTotalAmountBeforeVATWithDiscount < 1500 ) {
+//            throw new ShippingNotSupported("Shipping is not supported for the following amount: " + passTotalAmountBeforeVATWithDiscount);
+//        }
 
         double randAdditionalDiscountPercent = additionalDiscountPercent;
         int randDiscountPercent = (rand.nextInt(5 - 1) + 1)*10;

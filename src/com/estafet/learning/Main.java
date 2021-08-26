@@ -8,72 +8,78 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) throws DiscountNotApplicableException {
-        Scanner sc = new Scanner(System.in);  // Create a Scanner object
+        Scanner sc = new Scanner(System.in);
+        List<String> menu = new ArrayList<>();
+        menu.add("\n0. Exit.");
+        menu.add("1. Generate random TradeInvoice objects and save them to a file.");
+        menu.add("2. Generate random Object objects and save them to a file.");
+        menu.add("3. Search Invoice by ID.");
+        menu.add("4. Search Order by ID.");
+        menu.add("5. Save phone codes from json to hashmap.");
+        menu.add("6. Save Germany zip codes from json to hashmap.");
 
-/*        --------------------- TradeInvoice objects ---------------------*/
-/*
+        boolean isRunning = true;
 
-        Invoice objectTradeInvoice = new TradeInvoice();
-        Invoice objectTradeInvoice2 = new TradeInvoice();
-        TradeInvoiceCalculations objectTradeInvoiceCalculations = new TradeInvoice();
+        List<Invoice> tradeInvoiceObjectsList = null;
+        List<Order> orderObjectsList = null;
+        while (isRunning) {
+            menu.forEach(option -> System.out.println(option));
+            System.out.print("\nEnter the selected func(): ");
+            int option = sc.nextInt();
+            switch (option) {
+                case 0:
+                    isRunning = false;
+                    break;
+                case 1:
+                    Invoice objectTradeInvoice = new TradeInvoice();
+                    Invoice objectTradeInvoice2 = new TradeInvoice();
+                    TradeInvoiceCalculations objectTradeInvoiceCalculations = new TradeInvoice();
 
+                    tradeInvoiceObjectsList = new ArrayList<>();
+                    tradeInvoiceObjectsList.add(objectTradeInvoice);
+                    tradeInvoiceObjectsList.add(objectTradeInvoice2);
 
-        List<Invoice> tradeInvoiceObjectsList = new ArrayList<>();
-        tradeInvoiceObjectsList.add(objectTradeInvoice);
-        tradeInvoiceObjectsList.add(objectTradeInvoice2);
+                    for (int i = 0; i < tradeInvoiceObjectsList.size(); i++) {
+                        tradeInvoiceObjectsList.get(i).ExecuteActions();
+                    }
+                    //objectTradeInvoiceCalculations.ExecuteActions();
+                    break;
+                case 2:
+                    orderObjectsList = new ArrayList<>();
+                    Order objectOrder = new Order();
+                    Order objectOrder2 = new Order();
 
-        objectTradeInvoice.ExecuteActions();
-        objectTradeInvoice2.ExecuteActions();
+                    orderObjectsList.add(objectOrder);
+                    orderObjectsList.add(objectOrder2);
 
-        objectTradeInvoiceCalculations.ExecuteActions();
-
-        */
-/*--------------------- Order objects ---------------------*//*
-
-
-        List<Order> orderObjectsList = new ArrayList<>();
-        Order objectOrder = new Order();
-        Order objectOrder2 = new Order();
-
-        orderObjectsList.add(objectOrder);
-        orderObjectsList.add(objectOrder2);
-
-        for (int i = 0; i < orderObjectsList.size(); i++) {
-            orderObjectsList.get(i).ExecuteActionsOnOrder();
+                    for (int i = 0; i < orderObjectsList.size(); i++) {
+                        orderObjectsList.get(i).ExecuteActionsOnOrder();
+                    }
+                    break;
+                case 3:
+                    Invoice foundInvoiceObj = findInvoiceByID(tradeInvoiceObjectsList);
+                    foundInvoiceObj.printObjectProperties();
+                    break;
+                case 4:
+                    Order foundOrderObj = findOrderByID(orderObjectsList);
+                    foundOrderObj.printObjectProperties();
+                    break;
+                case 5:
+                    CountryPhoneCodes objectCountryPhoneCodes = new CountryPhoneCodes();
+                    objectCountryPhoneCodes.ReadFile();
+                    break;
+                case 6:
+                    CountryPostalCodes objectCountryPostalCodes = new CountryPostalCodes();
+                    objectCountryPostalCodes.ReadFile();
+                    break;
+            }
         }
-*/
-
-
-        /*        ----------------------- COUNTRY PHONE CODES MAP -----------------------         */
-
-        CountryPhoneCodes objectCountryPhoneCodes = new CountryPhoneCodes();
-        objectCountryPhoneCodes.ReadFile();
-
-        CountryPostalCodes objectCountryPostalCodes = new CountryPostalCodes();
-        //objectCountryPostalCodes.ReadFile();
-
-
-/*        ----------------------- FIND INVOICE AND ORDER BY ID -----------------------         */
-
-
-/*
-        System.out.println("Enter Invoice and Order number: ");
-        String searchedInvoiceNumber = sc.nextLine();
-        String searchedOrderNumber = sc.nextLine();
-
-        Invoice foundInvoiceObj = findInvoiceByID(tradeInvoiceObjectsList, searchedInvoiceNumber);
-        foundInvoiceObj.printObjectProperties();
-
-        Order foundOrderObj = findOrderByID(orderObjectsList, searchedOrderNumber);
-        foundOrderObj.printObjectProperties();
-
-*/
-
-
-
     }
 
-    public static Invoice findInvoiceByID(List<Invoice> tradeInvoiceObjectsList, String searchedInvoiceNumber) {
+    public static Invoice findInvoiceByID(List<Invoice> tradeInvoiceObjectsList) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter Invoice number: ");
+        String searchedInvoiceNumber = sc.nextLine();
         for (Invoice el : tradeInvoiceObjectsList) {
             if (searchedInvoiceNumber.equals(String.valueOf(el.getInvoiceNumber()))) {
                 System.out.println("Invoice Number Exists: " + searchedInvoiceNumber);
@@ -84,7 +90,10 @@ public class Main {
         return null;
     }
 
-    public static Order findOrderByID(List<Order> orderObjectsList, String searchedOrderNumber) {
+    public static Order findOrderByID(List<Order> orderObjectsList) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter Order number: ");
+        String searchedOrderNumber = sc.nextLine();
         for (Order el : orderObjectsList) {
             if (searchedOrderNumber.equals(String.valueOf(el.getOrderNumber()))) {
                 System.out.println("Order Number Exists: " + searchedOrderNumber);
