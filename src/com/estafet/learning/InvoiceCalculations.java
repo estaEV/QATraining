@@ -10,11 +10,6 @@ interface InvoiceCalculations {
     void calculateInvoiceWithVAT();
     void cutThemSomeSlack(double additionalDiscountPercent) throws DiscountNotApplicableException, ShippingNotSupported;
 
-    default double additionalDiscount() {
-        double randAdditionalDiscountPercent = (rand.nextInt(4- 1) + 1)*10;
-        //randAdditionalDiscountPercent = 40;
-        System.out.println("\nAdditional discount percent from interface InvoiceCalculations is: " + randAdditionalDiscountPercent + "\n");
-        return randAdditionalDiscountPercent;
-    }
+    double additionalDiscount();
     void printObjectProperties();
 }

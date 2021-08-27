@@ -42,7 +42,7 @@ public class TradeInvoice extends Invoice {
         setTotalAmountBeforeVAT(passTotalAmountBeforeVAT);
         setArticles(articlesToPass);
 
-/*        System.out.println("totalAmountToPass: " + passTotalAmountBeforeVAT);
+        /*  System.out.println("totalAmountToPass: " + passTotalAmountBeforeVAT);
         for (String i : articlesToPass.keySet()) {
             System.out.println("key: " + i + " value: " + articlesToPass.get(i));
         }*/
@@ -76,6 +76,12 @@ public class TradeInvoice extends Invoice {
         setTotalAmountBeforeVATWithDiscount(passTotalAmountBeforeVATWithDiscount);
     }
 
+    public double additionalDiscount() {
+        int randAdditionalDiscountPercent = (rand.nextInt(4 - 1) + 1) * 10;
+        //randAdditionalDiscountPercent = 50;
+        System.out.println("\nAdditional discount percent from interface TradeInvoiceCalculations is: " + randAdditionalDiscountPercent + "\n");
+        return randAdditionalDiscountPercent;
+    }
 
     public void calculateInvoiceWithVAT() {
         double passTotalAmountAfterVAT = getTotalAmountBeforeVATWithDiscount();

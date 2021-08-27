@@ -76,7 +76,7 @@ public class Main {
         }
     }
 
-    public static Invoice findInvoiceByID(List<Invoice> tradeInvoiceObjectsList) {
+    private static Invoice findInvoiceByID(List<Invoice> tradeInvoiceObjectsList) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter Invoice number: ");
         String searchedInvoiceNumber = sc.nextLine();
@@ -90,7 +90,7 @@ public class Main {
         return null;
     }
 
-    public static Order findOrderByID(List<Order> orderObjectsList) {
+    private static Order findOrderByID(List<Order> orderObjectsList) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter Order number: ");
         String searchedOrderNumber = sc.nextLine();

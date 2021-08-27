@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-abstract public class Invoice implements InvoiceCalculations, TradeInvoiceCalculations {
+abstract public class Invoice implements TradeInvoiceCalculations {
 
     private int invoiceNumber;
     private String clientDetails;
