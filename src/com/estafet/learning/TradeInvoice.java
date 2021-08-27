@@ -8,6 +8,9 @@ public class TradeInvoice extends Invoice {
     public Random rand = new Random();
     public Map<String, Double> articlesToPass = new LinkedHashMap<String, Double>();
 
+    /**
+     * Generates random data for populating an invoice object. It calls the getters and setters of the class.
+     */
     public void generateRandomTradeInvoiceData()
     {
         double passTotalAmountBeforeVAT = 0;
@@ -49,7 +52,13 @@ public class TradeInvoice extends Invoice {
     }
 
 
-    // VAT is calculated on the discounted price of the product. Is it better the retrieve the prices (with get function) inside of the method or to pass them as arguments?
+    /**
+     * Adds a discount to the setTotalAmountBeforeVAT and sets the rest of the values of the object. It also adds the additional discount param.
+     * VAT is calculated on the discounted price of the product. Is it better the retrieve the prices (with get function) inside of the method or to pass them as arguments?
+     * @param additionalDiscountPercent
+     * @throws DiscountNotApplicableException
+     * @throws ShippingNotSupported
+     */
     public void cutThemSomeSlack(double additionalDiscountPercent) throws DiscountNotApplicableException, ShippingNotSupported {
         //System.out.printf("Additional discount percent is: %s percents\n\n", additionalDiscountPercent);
 
@@ -76,6 +85,10 @@ public class TradeInvoice extends Invoice {
         setTotalAmountBeforeVATWithDiscount(passTotalAmountBeforeVATWithDiscount);
     }
 
+    /**
+     * Generates an additional discount used in cutThemSomeSlack. Method is used to represent interface inheritance and default functions.
+     * @return
+     */
     public double additionalDiscount() {
         int randAdditionalDiscountPercent = (rand.nextInt(4 - 1) + 1) * 10;
         //randAdditionalDiscountPercent = 50;
@@ -83,6 +96,9 @@ public class TradeInvoice extends Invoice {
         return randAdditionalDiscountPercent;
     }
 
+    /**
+     * Gets getTotalAmountBeforeVATWithDiscount and add to it a 20% of VAT taxes.
+     */
     public void calculateInvoiceWithVAT() {
         double passTotalAmountAfterVAT = getTotalAmountBeforeVATWithDiscount();
         passTotalAmountAfterVAT += (passTotalAmountAfterVAT*20)/100;
@@ -99,6 +115,11 @@ public class TradeInvoice extends Invoice {
         System.out.println("Item: " + this.toString());
     }
 
+
+    /**
+     * Saves the lastly generated object into a file.
+     * @throws IOException
+     */
     public void saveInvoiceObjectToFile() throws IOException {
         // BufferedWriter bw = null;
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\TrainingPlanProjects\\Sprint_04\\InvoicePropertiesOutput.txt"))) {
@@ -125,20 +146,23 @@ public class TradeInvoice extends Invoice {
             }
     }
 
-    // Entry point
+    /**
+     * Entry point used by the object in main(). It makes calls to the other functions.
+     */
+
     public void ExecuteActions ()
         {
-            generateRandomTradeInvoiceData();
+            this.generateRandomTradeInvoiceData();
             try {
-                cutThemSomeSlack(additionalDiscount());
+                this.cutThemSomeSlack(additionalDiscount());
             } catch (DiscountNotApplicableException | ShippingNotSupported e) {
                 e.printStackTrace();
             }
-            calculateInvoiceWithVAT();
+            this.calculateInvoiceWithVAT();
             //tradeInvoiceObjectsList.add(this);
-            printObjectProperties();
+            this.printObjectProperties();
             try {
-                saveInvoiceObjectToFile();
+                this.saveInvoiceObjectToFile();
             } catch (IOException e) {
                 e.printStackTrace();
             }

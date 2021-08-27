@@ -66,16 +66,21 @@ public class Main {
                     break;
                 case 5:
                     CountryPhoneCodes objectCountryPhoneCodes = new CountryPhoneCodes();
-                    objectCountryPhoneCodes.ReadFile();
+                    objectCountryPhoneCodes.generateHashMap();
                     break;
                 case 6:
                     CountryPostalCodes objectCountryPostalCodes = new CountryPostalCodes();
-                    objectCountryPostalCodes.ReadFile();
+                    objectCountryPostalCodes.generateHashMap();
                     break;
             }
         }
     }
 
+    /**
+     * Finds an invoice from the provided list using the input invoice number. If found - it prints the object properties.
+     * @param tradeInvoiceObjectsList
+     * @return
+     */
     private static Invoice findInvoiceByID(List<Invoice> tradeInvoiceObjectsList) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter Invoice number: ");
@@ -90,6 +95,11 @@ public class Main {
         return null;
     }
 
+    /**
+     * Finds an order from the provided list using the input order number. If found - it prints the object properties.
+     * @param orderObjectsList
+     * @return
+     */
     private static Order findOrderByID(List<Order> orderObjectsList) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter Order number: ");

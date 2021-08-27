@@ -14,6 +14,12 @@ public class CountryPostalCodes {
 
     public Map<String, String> phonePostalCodesMap = new HashMap<>();
 
+    /**
+     * Check if the result of the passed regex pattern is present into the passed string.
+     * @param theRegex
+     * @param str2Check
+     * @return
+     */
     public String regexChecker(String theRegex, String str2Check) {
         Pattern checkRegex = Pattern.compile(theRegex);
         Matcher regexMatcher = checkRegex.matcher(str2Check);
@@ -28,7 +34,10 @@ public class CountryPostalCodes {
         return result;
     }
 
-    public void ReadFile() {
+    /**
+     * Opens a json containing each zip codes of cities in Germany. Using regex it filters the cities and the zip codes and puts them into a HashMap where the key are the cities and the values are zip codes.
+     */
+    public void generateHashMap() {
         String currentLine = null;
         String regexResult = null;
         String regexResultDigit = null;

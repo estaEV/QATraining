@@ -13,6 +13,12 @@ import java.util.regex.Pattern;
 public class CountryPhoneCodes {
     private Map<String, String> phoneCodesMap = new HashMap<>();
 
+    /**
+     * Check if the result of the passed regex pattern is present into the passed string.
+     * @param theRegex
+     * @param str2Check
+     * @return
+     */
     public String regexChecker(String theRegex, String str2Check) {
         Pattern checkRegex = Pattern.compile(theRegex);
         Matcher regexMatcher = checkRegex.matcher(str2Check);
@@ -27,7 +33,10 @@ public class CountryPhoneCodes {
         return result;
     }
 
-    public void ReadFile() {
+    /**
+     * Opens a json containing each country phone prefix. Using regex it filters the countries and the phone codes and puts them into a HashMap where the key are the countries and the values are phones codes.
+     */
+    public void generateHashMap() {
         String currentLine = null;
         String regexResult = null;
         String regexResult2 = null;
