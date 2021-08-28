@@ -1,5 +1,6 @@
 package com.estafet.learning;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -40,7 +41,12 @@ public class Main {
                     tradeInvoiceObjectsList.add(objectTradeInvoice2);
 
                     for (int i = 0; i < tradeInvoiceObjectsList.size(); i++) {
-                        tradeInvoiceObjectsList.get(i).ExecuteActions();
+                        try {
+                            tradeInvoiceObjectsList.get(i).ExecuteActions();
+                        } catch (IOException e) {
+                            System.out.println("Finally the retrown exception from ExeciteActions() TradeInvoice is catched in the main()");
+                            e.printStackTrace();
+                        }
                     }
                     //objectTradeInvoiceCalculations.ExecuteActions();
                     break;
