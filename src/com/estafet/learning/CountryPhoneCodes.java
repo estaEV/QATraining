@@ -14,7 +14,7 @@ public class CountryPhoneCodes {
     private Map<String, String> phoneCodesMap = new HashMap<>();
 
     /**
-     * Check if the result of the passed regex pattern is present into the passed string.
+     * Checks if the result of the passed regex pattern is present into the passed string.
      * @param theRegex
      * @param str2Check
      * @return
