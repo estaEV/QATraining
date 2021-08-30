@@ -1,9 +1,8 @@
-package com.estafet.learning;
+package com.estafet.learning.spint4;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
@@ -13,7 +12,7 @@ public class Main {
         List<String> menu = new ArrayList<>();
         menu.add("\n0. Exit.");
         menu.add("1. Generate random TradeInvoice objects and save them to a file.");
-        menu.add("2. Generate random Object objects and save them to a file.");
+        menu.add("2. Generate random Order objects and save them to a file.");
         menu.add("3. Search Invoice by ID.");
         menu.add("4. Search Order by ID.");
         menu.add("5. Save phone codes from json to hashmap.");

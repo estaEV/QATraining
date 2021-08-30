@@ -1,4 +1,4 @@
-package com.estafet.learning;
+package com.estafet.learning.spint4;
 
 public class ShippingNotSupported extends Exception {
     ShippingNotSupported(String message) {

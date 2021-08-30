@@ -1,8 +1,8 @@
-package com.estafet.learning;
+package com.estafet.learning.spint4;
 
 import java.util.*;
 import java.io.*;
-import static com.estafet.learning.Globals.*;
+import static com.estafet.learning.spint4.Globals.*;
 
 public class TradeInvoice extends Invoice {
     public Random rand = new Random();

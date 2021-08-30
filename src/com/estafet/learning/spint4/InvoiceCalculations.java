@@ -1,6 +1,5 @@
-package com.estafet.learning;
+package com.estafet.learning.spint4;
 
-import java.util.List;
 import java.util.Random;
 
 interface InvoiceCalculations {
