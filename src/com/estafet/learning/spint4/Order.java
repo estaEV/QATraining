@@ -1,4 +1,4 @@
-package com.estafet.learning;
+package com.estafet.learning.spint4;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.*;
 
-import static com.estafet.learning.Globals.*;
+import static com.estafet.learning.spint4.Globals.*;
 
 public class Order implements OrderCalculations{
 
