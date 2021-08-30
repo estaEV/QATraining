@@ -122,7 +122,7 @@ public class TradeInvoice extends Invoice {
      */
     public void saveInvoiceObjectToFile() throws IOException {
         // BufferedWriter bw = null;
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\TrainingPlanProjects\\Sprint_04\\InvoicePropertiesOutput.txt"))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\TrainingPlanProjects\\QATraining\\InvoicePropertiesOutput.txt"))) {
 
                     bw.write("\n" + String.valueOf(this.articlesToPass) + ", ");
                     bw.write("\n" + this.getInvoiceNumber() + ", ");

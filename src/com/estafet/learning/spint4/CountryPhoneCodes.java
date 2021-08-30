@@ -45,7 +45,7 @@ public class CountryPhoneCodes {
         List<String> phoneCodes =  new ArrayList();;
 
         try {
-            File myObj = new File("C:\\TrainingPlanProjects\\Sprint_04\\country-codes.json");
+            File myObj = new File("C:\\TrainingPlanProjects\\QATraining\\country-codes.json");
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
                 currentLine = myReader.nextLine();

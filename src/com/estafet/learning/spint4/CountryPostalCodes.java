@@ -45,7 +45,7 @@ public class CountryPostalCodes {
         List<String> postalCodes =  new ArrayList();;
 
         try {
-            File myObj = new File("C:\\TrainingPlanProjects\\Sprint_04\\zipcodes-de.json");
+            File myObj = new File("C:\\TrainingPlanProjects\\QATraining\\zipcodes-de.json");
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
                 currentLine = myReader.nextLine();
