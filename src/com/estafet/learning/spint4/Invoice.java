@@ -177,17 +177,16 @@ abstract public class Invoice implements TradeInvoiceCalculations {
         for ( Field field : fields  ) {
             result.append("  ");
             try {
-                result.append( field.getName() );
+                result.append(field.getName());
                 result.append(": ");
                 //requires access to private field:
-                result.append( field.get(this) );
+                result.append(field.get(this));
             } catch ( IllegalAccessException ex ) {
                 System.out.println(ex);
             }
             result.append(newLine);
         }
         result.append("}");
-
         return result.toString();
     }
 

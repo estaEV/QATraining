@@ -2,6 +2,11 @@ package com.estafet.learning.spint4;
 
 import java.util.*;
 import java.io.*;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.function.Function;
+import java.util.function.Supplier;
+import java.util.function.UnaryOperator;
+
 import static com.estafet.learning.spint4.Globals.*;
 
 public class TradeInvoice extends Invoice {
@@ -15,6 +20,7 @@ public class TradeInvoice extends Invoice {
     {
         double passTotalAmountBeforeVAT = 0;
 
+        //Supplier<Integer> dice = () -> ThreadLocalRandom.current().nextInt(190000, 27000);
         int invoiceNumber = rand.nextInt(27000 - 19000) + 19000;
         setInvoiceNumber(invoiceNumber);
         String clientDetailsToPass = UUID.randomUUID().toString();
@@ -96,14 +102,22 @@ public class TradeInvoice extends Invoice {
         return randAdditionalDiscountPercent;
     }
 
+
     /**
      * Gets getTotalAmountBeforeVATWithDiscount and add to it a 20% of VAT taxes.
      */
-    public void calculateInvoiceWithVAT() {
+/*    public void calculateInvoiceWithVAT() {
         double passTotalAmountAfterVAT = getTotalAmountBeforeVATWithDiscount();
         passTotalAmountAfterVAT += (passTotalAmountAfterVAT*20)/100;
         setTotalAmountAfterVAT(passTotalAmountAfterVAT);
-    }
+    }*/
+
+
+    /**
+     * Same as above method - applies VAT tax of 1.2. UnaryOperator - takes and returns the same arg type.
+     */
+    UnaryOperator<Double> addVAT = x -> x*1.2;
+
 
 /*    public static void  printObjectPropertiesList(List<Invoice> ordersObjects) {
         for (Invoice item : ordersObjects) {
@@ -150,6 +164,7 @@ public class TradeInvoice extends Invoice {
      * Entry point used by the object in main(). It makes calls to the other functions.
      */
 
+
     public void ExecuteActions () throws IOException {
             this.generateRandomTradeInvoiceData();
             try {
@@ -158,8 +173,13 @@ public class TradeInvoice extends Invoice {
                 System.out.println("Catch state of ExecuteActions activated. Printing stack trace:");
                 e.printStackTrace();
             }
-            this.calculateInvoiceWithVAT();
-            //tradeInvoiceObjectsList.add(this);
+
+            // Add VAT. Maybe move that to the discount method?
+            double passTotalAmountAfterVAT = (getTotalAmountBeforeVATWithDiscount() != 0 ? addVAT.apply(getTotalAmountBeforeVATWithDiscount()) : addVAT.apply(getTotalAmountBeforeVAT()));
+            setTotalAmountAfterVAT(passTotalAmountAfterVAT);
+
+            // this.calculateInvoiceWithVAT();
+            // tradeInvoiceObjectsList.add(this);
             this.printObjectProperties();
             try {
                 this.saveInvoiceObjectToFile();
