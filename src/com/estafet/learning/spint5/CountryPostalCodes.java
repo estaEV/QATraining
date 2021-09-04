@@ -49,7 +49,7 @@ public class CountryPostalCodes {
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
                 currentLine = myReader.nextLine();
-                regexResult = regexChecker("\"place\": \\s?\"[a-zA-ZäöüÄÖÜß\\s-]+\"", currentLine);
+                regexResult = regexChecker("\"place\": \\s?\"([a-zA-ZäöüÄÖÜß\\s/-])+\"", currentLine);
                 regexResultDigit = regexChecker("\"zipcode\":\\s\"[0-9]+\"", currentLine);
 
                 if(regexResultDigit != null) {
@@ -71,10 +71,14 @@ public class CountryPostalCodes {
 
         for (int i = 0; i < countries.size(); i++) {
             if (phonePostalCodesMap.containsKey(countries.get(i))) {
+                StringBuilder sb = new StringBuilder();
+
                 String oldValue = phonePostalCodesMap.get(countries.get(i));
                 String newValue = postalCodes.get(i);
-                String concated = oldValue + " | " +  newValue;
-                phonePostalCodesMap.put(countries.get(i), concated);
+                sb.append(oldValue);
+                sb.append(" | ");
+                sb.append(newValue);
+                phonePostalCodesMap.put(countries.get(i), sb.toString());
                 //phonePostalCodesMap.merge(countries.get(i), postalCodes.get(i), (x, y) -> (x + " | " + y));
             }
             else {
