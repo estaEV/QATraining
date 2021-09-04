@@ -122,8 +122,6 @@ abstract public class Invoice implements TradeInvoiceCalculations {
     }*/
 
 
-
-
     @Override
     public boolean equals(Object obj)
     {
@@ -175,18 +173,35 @@ abstract public class Invoice implements TradeInvoiceCalculations {
 
         //print field names paired with their values
         for ( Field field : fields  ) {
-            result.append("  ");
+
             try {
-                result.append(field.getName());
-                result.append(": ");
-                //requires access to private field:
-                result.append(field.get(this));
+                if (field.get(this) != null ) {
+                    if (field.get(this) instanceof Double) {
+                        if ((Double)field.get(this) != 0) {
+                            result.append("  ");
+                            result.append(field.getName());
+                            result.append(": ");
+                            //requires access to private field:
+                            result.append(String.format("%.2f", field.get(this)));
+                            result.append(newLine);
+                        }
+                        else {continue;}
+                    }
+                    else {
+                        result.append("  ");
+                        result.append(field.getName());
+                        result.append(": ");
+                        //requires access to private field:
+                        result.append(field.get(this));
+                        result.append(newLine);
+                    }
+                }
+
             } catch ( IllegalAccessException ex ) {
                 System.out.println(ex);
             }
-            result.append(newLine);
         }
-        result.append("}");
+        result.append("}\n");
         return result.toString();
     }
 

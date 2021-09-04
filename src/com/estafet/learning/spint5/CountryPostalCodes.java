@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 public class CountryPostalCodes {
 
-    public Map<String, String> phonePostalCodesMap = new HashMap<>();
+    public Map<String, String> phonePostalCodesMap = new LinkedHashMap<>();
 
     /**
      * Check if the result of the passed regex pattern is present into the passed string.
@@ -31,6 +31,10 @@ public class CountryPostalCodes {
     }
 
     /**
+     * Issue - One postal can be related to many places - revert key/value.
+     * Issue - We can have same places in different states. This causes the hashmap to add the second value (zipcode) to the first one and create a fictional zip code.
+     * Issue - Add german alphabet letters into the filtering of the place.
+     *
      * Opens a json containing each zip codes of cities in Germany. Using regex it filters the cities and the zip codes and puts them into a HashMap where the key are the cities and the values are zip codes.
      */
     public void generateHashMap() {
@@ -45,7 +49,7 @@ public class CountryPostalCodes {
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
                 currentLine = myReader.nextLine();
-                regexResult = regexChecker("\"place\": \\s?\"[a-zA-Z]+\"", currentLine);
+                regexResult = regexChecker("\"place\": \\s?\"[a-zA-ZäöüÄÖÜß\\s-]+\"", currentLine);
                 regexResultDigit = regexChecker("\"zipcode\":\\s\"[0-9]+\"", currentLine);
 
                 if(regexResultDigit != null) {
@@ -66,7 +70,16 @@ public class CountryPostalCodes {
         }
 
         for (int i = 0; i < countries.size(); i++) {
-            phonePostalCodesMap.put(countries.get(i), postalCodes.get(i));
+            if (phonePostalCodesMap.containsKey(countries.get(i))) {
+                String oldValue = phonePostalCodesMap.get(countries.get(i));
+                String newValue = postalCodes.get(i);
+                String concated = oldValue + " | " +  newValue;
+                phonePostalCodesMap.put(countries.get(i), concated);
+                //phonePostalCodesMap.merge(countries.get(i), postalCodes.get(i), (x, y) -> (x + " | " + y));
+            }
+            else {
+                phonePostalCodesMap.put(countries.get(i), postalCodes.get(i));
+            }
         }
         for (String j : phonePostalCodesMap.keySet()) {
             System.out.println("place: " + j + " zipCode: " + phonePostalCodesMap.get(j));

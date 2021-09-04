@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.*;
 import java.util.function.UnaryOperator;
 
-import static com.estafet.learning.spint5.Globals.ARTICLES_DEFAULT_MAP;
+import static com.estafet.learning.spint5.Globals.*;
 
 public class TradeInvoice extends Invoice {
     public Random rand = new Random();
@@ -125,7 +125,7 @@ public class TradeInvoice extends Invoice {
     }*/
 
     public void printObjectProperties() {
-        System.out.println("Item: " + this.toString());
+        System.out.print(String.format("Item: %s", this));
     }
 
 
@@ -136,7 +136,6 @@ public class TradeInvoice extends Invoice {
     public void saveInvoiceObjectToFile() throws IOException {
         // BufferedWriter bw = null;
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\TrainingPlanProjects\\QATraining\\InvoicePropertiesOutput.txt"))) {
-
                     bw.write("\n" + String.valueOf(this.articlesToPass) + ", ");
                     bw.write("\n" + this.getInvoiceNumber() + ", ");
                     bw.write("\n" + this.getClientDetails() + ", ");
