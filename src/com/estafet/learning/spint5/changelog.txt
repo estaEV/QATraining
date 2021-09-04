@@ -1,0 +1,19 @@
+Bug fixes:
+//- dont print null fields
+//- dont print fields containing zeros
+- fix de postal code map
+//- catch invoice not found
+//- catch order not found
+//- replace map.of and compile with java 8 -  Stream of Map.Entry. Amazon Coretto 1.8 is used.
+//- calculate vat even if there is no discount - lambdas
+
+Improvements:
+//- round the prices
+//- rewriten toString using SB
+//- printAllObjects unified - one method for all types of objects
+//- printAllObjects - prints all objects generated in the current run lifecycle. Not only form the last generate cycle
+
+
+UnnaryOperand. The bounderies are becoming blur. Should you make a separate function just to make the code more easely readeble?
+
+module vs package vs library?
