@@ -34,6 +34,7 @@ public class CountryPostalCodes {
      * Issue - One postal can be related to many places - revert key/value.
      * Issue - We can have same places in different states. This causes the hashmap to add the second value (zipcode) to the first one and create a fictional zip code.
      * Issue - Add german alphabet letters into the filtering of the place.
+     * Issue - Regex wasnt matching some of the places.
      *
      * Opens a json containing each zip codes of cities in Germany. Using regex it filters the cities and the zip codes and puts them into a HashMap where the key are the cities and the values are zip codes.
      */
@@ -49,11 +50,12 @@ public class CountryPostalCodes {
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
                 currentLine = myReader.nextLine();
-                regexResult = regexChecker("\"place\": \\s?\"([a-zA-ZäöüÄÖÜß\\s/-])+\"", currentLine);
+                //regexResult = regexChecker("\"place\": \\s?\"([a-zA-ZäöüÄÖÜß\\s/-])+\"", currentLine);
+                regexResult = regexChecker("\"place\": \\s?([\"'])(?:(?=(\\\\?))\\2.)*?\\1", currentLine);
                 regexResultDigit = regexChecker("\"zipcode\":\\s\"[0-9]+\"", currentLine);
 
                 if(regexResultDigit != null) {
-                    regexResultDigit = regexChecker("[0-9]{5}", regexResultDigit);
+                    regexResultDigit = regexChecker("[0-9]+", regexResultDigit);
                     postalCodes.add(regexResultDigit);
                 }
 
@@ -72,7 +74,6 @@ public class CountryPostalCodes {
         for (int i = 0; i < countries.size(); i++) {
             if (phonePostalCodesMap.containsKey(countries.get(i))) {
                 StringBuilder sb = new StringBuilder();
-
                 String oldValue = phonePostalCodesMap.get(countries.get(i));
                 String newValue = postalCodes.get(i);
                 sb.append(oldValue);

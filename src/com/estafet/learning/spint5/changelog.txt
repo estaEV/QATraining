@@ -1,7 +1,7 @@
 Bug fixes:
 //- dont print null fields
 //- dont print fields containing zeros
-- fix de postal code map
+//- fix de postal code map
 //- catch invoice not found
 //- catch order not found
 //- replace map.of and compile with java 8 -  Stream of Map.Entry. Amazon Coretto 1.8 is used.

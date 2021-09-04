@@ -5,11 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static java.lang.Package.getPackage;
+
 public class Main {
 
     public static void main(String[] args) throws DiscountNotApplicableException {
         Scanner sc = new Scanner(System.in);
         List<String> menu = new ArrayList<>();
+        System.out.println("sprint5");
         menu.add("\n0. Exit.");
         menu.add("1. Generate random TradeInvoice objects and save them to a file.");
         menu.add("2. Generate random Order objects and save them to a file.");
